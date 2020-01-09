@@ -1,0 +1,42 @@
+[{
+  "id": 201,
+  "number": 321,
+  "name": "London",
+  "capacity": 3,
+  "hasWindow": true
+},
+{
+"id": 202,
+"number": 432,
+"name": "Berlin",
+"capacity": 2,
+"hasWindow": false
+},
+{
+"id": 503,
+"number": 543,
+"name": "Tokyo",
+"capacity": 4,
+"hasWindow": true
+},
+{
+"id": 504,
+"number": 444,
+"name": "Warsaw",
+"capacity": 5,
+"hasWindow": false
+},
+{
+"id": 505,
+"number": 555,
+"name": "Paris",
+"capacity": 5,
+"hasWindow": true
+},
+{
+"id": 506,
+"number": 666,
+"name": "Oslo",
+"capacity": 2,
+"hasWindow": true
+}]

@@ -1,6 +1,5 @@
 package com.example.roombookingapp.booking.guest;
 
-import com.example.roombookingapp.booking.room.RoomDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -26,6 +25,7 @@ public class GuestController {
                 .map(GuestDto::from)
                 .collect(Collectors.toList());
     }
+
     @GetMapping("/get")
     public GuestDto get(Long id) {
         log.info("attempting do get guest with Id:[{}]!", id);
@@ -34,7 +34,7 @@ public class GuestController {
 
     @GetMapping("/getByEmail")
     public List<GuestDto> getByEmail(String email) {
-        log.info("attempting do get guest with email:[{}]!",email);
+        log.info("attempting do get guest with email:[{}]!", email);
         return guestApi.getByEmail(email).stream()
                 .map(GuestDto::from)
                 .collect(Collectors.toList());

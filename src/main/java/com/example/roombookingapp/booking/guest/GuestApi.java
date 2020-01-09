@@ -10,7 +10,7 @@ public interface GuestApi {
 
     List<Guest> getByEmail(String email);
 
-    Guest create (GuestDto guestDto);
+    Guest create(GuestDto guest);
 
     void delete(Long id);
 }

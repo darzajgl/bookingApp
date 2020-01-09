@@ -55,6 +55,9 @@ public class RoomService implements RoomApi {
                 .build());
     }
 
+
+
+
     @Override
     public void delete(Long id) {
         log.info("attempting do delete room with Id:[{}]", id);

@@ -29,7 +29,7 @@ public class GuestService implements GuestApi {
     public Guest get(Long id) {
         log.info("attempting do get guest with Id:[{}]", id);
         return guestRepository.findById(id)
-                .orElseThrow(()-> new GuestNotFoundException(id));
+                .orElseThrow(() -> new GuestNotFoundException(id));
     }
 
     @Override
@@ -37,7 +37,7 @@ public class GuestService implements GuestApi {
         log.info("attempting do get guest with email:[{}]", email);
         List<Guest> guestList = guestRepository.findGuestByEmail(email);
 
-        if(guestList.isEmpty()){
+        if (guestList.isEmpty()) {
             throw new GuestNotFoundException(email);
         }
 
