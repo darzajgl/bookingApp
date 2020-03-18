@@ -1,15 +1,12 @@
 package com.example.roombookingapp.booking.guest;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Data
+@Table(name = "guest")
 @Entity
 @Builder
 @AllArgsConstructor
@@ -17,16 +14,23 @@ import java.time.LocalDate;
 public class Guest {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
+    @Column(name = "name")
     private String name;
 
+    @Column(name = "email")
     private String email;
 
-    private boolean goldMember;
+    @Column(name =  "goldMember")
+    private int goldMember;
 
+    @Column(name = "check_in_date")
     private LocalDate checkInDate;
 
+    @Column(name = "check_out_date")
     private LocalDate checkOutDate;
 
 }

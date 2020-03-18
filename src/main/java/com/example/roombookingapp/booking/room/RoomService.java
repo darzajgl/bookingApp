@@ -1,13 +1,16 @@
 package com.example.roombookingapp.booking.room;
 
+//import com.example.roombookingapp.booking.common.HibernateConfiguration;
 import com.example.roombookingapp.booking.room.exception.RoomNotFoundException;
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.Session;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
+//klasa- modyfikacja transferowanych danych
 @Slf4j
 @Service
 public class RoomService implements RoomApi {
@@ -17,6 +20,13 @@ public class RoomService implements RoomApi {
     public RoomService(RoomRepository roomRepository) {
         this.roomRepository = roomRepository;
     }
+
+//    @Override
+//    public List<Room> getRoom() {
+//        try (Session session = HibernateConfiguration.getSessionFactory().openSession()) {
+//            return session.createQuery(" FROM Room", Room.class).list();
+//        }
+//    }
 
     @Override
     public List<Room> getAll() {
@@ -28,6 +38,7 @@ public class RoomService implements RoomApi {
     @Override
     public Room get(Long id) {
         log.info("attempting do get room with Id:[{}]", id);
+//        CRUD Repository
         return roomRepository.findById(id)
                 .orElseThrow(() -> new RoomNotFoundException(id));
     }
@@ -44,19 +55,10 @@ public class RoomService implements RoomApi {
     }
 
     @Override
-    public Room create(RoomDto roomDto) {
-        log.info("attempting do create new room: ", roomDto);
-        return roomRepository.save(Room.builder()
-                .id(roomDto.getId())
-                .number(roomDto.getNumber())
-                .name(roomDto.getName())
-                .capacity(roomDto.getCapacity())
-                .hasWindow(roomDto.isHasWindow())
-                .build());
+    public Room add(Room roomDto) {
+        log.info("attempting to add new room", roomDto);
+        return roomRepository.save(roomDto);
     }
-
-
-
 
     @Override
     public void delete(Long id) {

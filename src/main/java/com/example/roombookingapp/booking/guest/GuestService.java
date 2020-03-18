@@ -1,7 +1,10 @@
 package com.example.roombookingapp.booking.guest;
 
+//import com.example.roombookingapp.booking.common.HibernateConfiguration;
 import com.example.roombookingapp.booking.guest.exception.GuestNotFoundException;
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,6 +20,23 @@ public class GuestService implements GuestApi {
     public GuestService(GuestRepository guestRepository) {
         this.guestRepository = guestRepository;
     }
+
+//    @Override
+//    public void saveGuest(Guest guest) {
+//        Transaction transaction = null;
+//        try (Session session = HibernateConfiguration.getSessionFactory().openSession()) {
+//            transaction = session.beginTransaction();
+//            session.save(guest);
+//            transaction.commit();
+//        } catch (Exception e) {
+//            if (transaction != null) {
+//                transaction.rollback();
+//            }
+//            e.printStackTrace();
+//        }
+//    }
+
+
 
     @Override
     public List<Guest> getAll() {
@@ -45,15 +65,9 @@ public class GuestService implements GuestApi {
     }
 
     @Override
-    public Guest create(GuestDto guestDto) {
+    public Guest add(Guest guestDto) {
         log.info("attempting do create new guest");
-        return guestRepository.save(Guest.builder()
-                .id(guestDto.getId())
-                .name(guestDto.getName())
-                .email(guestDto.getEmail())
-                .checkInDate(guestDto.getCheckInDate())
-                .checkOutDate(guestDto.getCheckOutDate())
-                .build());
+        return guestRepository.save(guestDto);
     }
 
     @Override

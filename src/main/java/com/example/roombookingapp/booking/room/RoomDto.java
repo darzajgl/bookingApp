@@ -1,16 +1,18 @@
 package com.example.roombookingapp.booking.room;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotNull;
-import java.util.Objects;
+
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 
 public class RoomDto {
-
-    private Long id;
 
     @NotNull
     private int number;
@@ -22,16 +24,15 @@ public class RoomDto {
     private int capacity;
 
     @NotNull
-    private boolean hasWindow;
+    private int hasWindow;
 
 
     static RoomDto from(Room room) {
         return RoomDto.builder()
-                .id(room.getId())
                 .number(room.getNumber())
                 .name(room.getName())
                 .capacity(room.getCapacity())
-                .hasWindow(room.isHasWindow())
+                .hasWindow(room.getHasWindow())
                 .build();
     }
 }

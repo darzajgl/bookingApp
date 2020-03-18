@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:form="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Room List</title>
+
+</head>
+<body bgcolor="#2e8b57">
+<hr>
+<div id="container">
+    <div id="title">
+        <h1> Add new Room!!</h1>
+    </div>
+
+ <form action="#" th:action="@{/add}" th:object="room", method ="post">
+     <br><input type="hidden" th:field="*{id}" placeholder="id"><br>
+     <input type="text" th:field="*{number}" placeholder="number"><br>
+     <input type="text" th:field="*{name}" placeholder="name"><br>
+     <input type="text" th:field="*{capacity}" placeholder="capacity"><br>
+     <input type="text" th:field="*{hasWindow}" placeholder="hasWindow"><br>
+
+     <input type="submit" th:value="Save">
+     <br>
+ </form>
+
+
+</div>
+</body>
+</html>

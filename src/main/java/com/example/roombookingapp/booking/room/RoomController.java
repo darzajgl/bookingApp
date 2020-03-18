@@ -1,14 +1,19 @@
 package com.example.roombookingapp.booking.room;
 
+
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+//klasa transportowa - transfer danych bez ich modyfikacji
 @Slf4j
-@RestController
+@Controller
 @RequestMapping("room")
 public class RoomController {
 
@@ -18,13 +23,20 @@ public class RoomController {
         this.roomApi = roomApi;
     }
 
-    @GetMapping("/getAll")
+        @GetMapping("getAll")
     public List<RoomDto> getAll() {
         log.info("attempting do get all rooms()!");
         return roomApi.getAll().stream()
+//              :: można przyisać metodę do zmiennej bez jej wywoływania
                 .map(RoomDto::from)
                 .collect(Collectors.toList());
     }
+//    @RequestMapping("/viewemroom")
+//    public ModelAndView viewroom(Model model) {
+//        List<Room> list = roomApi.getRoom();
+//        return new ModelAndView("room/getAll", "list", list);
+//    }
+
 
     @GetMapping("/get")
     public RoomDto get(Long id) {
@@ -40,11 +52,12 @@ public class RoomController {
                 .collect(Collectors.toList());
     }
 
-    @PostMapping(value = "/create", produces = "application/json")
+    @RequestMapping(value = "/add", produces = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
-    public RoomDto create(@RequestBody RoomDto roomDto) {
-        log.info("attempting do create room with RoomDTO:[{}]!", roomDto);
-        return RoomDto.from(roomApi.create(roomDto));
+    public ModelAndView add(@ModelAttribute(value = "room") Room roomDto) {
+        log.info("attempting do create room [{}]!", roomDto);
+        roomApi.add(roomDto);
+        return new ModelAndView("redirect:/room/getAll");
     }
 
     @DeleteMapping("/delete")
@@ -53,6 +66,5 @@ public class RoomController {
         log.info("attempting do delete room with Id:[{}]!", id);
         roomApi.delete(id);
     }
-
 
 }

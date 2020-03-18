@@ -1,7 +1,9 @@
 package com.example.roombookingapp.booking.guest;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
@@ -9,16 +11,16 @@ import java.time.LocalDate;
 
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class GuestDto {
-
-    private Long id;
 
     @NotNull
     private String name;
 
     @Email
     @NotNull
-    private boolean goldMember;
+    private int goldMember;
 
     @NotNull
     private String email;
@@ -32,9 +34,8 @@ public class GuestDto {
 
     static GuestDto from(Guest guest) {
         return GuestDto.builder()
-                .id(guest.getId())
                 .name(guest.getName())
-                .goldMember(guest.isGoldMember())
+                .goldMember(guest.getGoldMember())
                 .email(guest.getEmail())
                 .checkInDate(guest.getCheckInDate())
                 .checkOutDate(guest.getCheckOutDate())

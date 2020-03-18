@@ -1,31 +1,40 @@
 package com.example.roombookingapp.booking.room;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import java.util.Objects;
+import javax.persistence.*;
+
 
 @Data
+@Table(name = "room")
 @Entity
 @Builder
+//@RequiredArgsConstructor
 @AllArgsConstructor
 @NoArgsConstructor
 
 public class Room {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
+    @Column(name = "number")
+    @NonNull
     private int number;
 
+    @Column(name = "name")
+    @NonNull
     private String name;
 
+    @Column(name = "capacity")
+    @NonNull
     private int capacity;
 
-    private boolean hasWindow;
+    @Column(name = "has_window")
+    @NonNull
+    private int hasWindow;
 
 }
+
