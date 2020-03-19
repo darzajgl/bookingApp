@@ -1,5 +1,6 @@
 package com.example.roombookingapp.booking.guest;
 
+import com.example.roombookingapp.booking.room.Room;
 import lombok.*;
 
 import javax.persistence.*;
@@ -33,4 +34,6 @@ public class Guest {
     @Column(name = "check_out_date")
     private LocalDate checkOutDate;
 
+    @OneToOne(mappedBy = "guest")
+    private Room room;
 }

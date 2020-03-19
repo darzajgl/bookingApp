@@ -1,5 +1,6 @@
 package com.example.roombookingapp.booking.room;
 
+import com.example.roombookingapp.booking.guest.Guest;
 import lombok.*;
 
 import javax.persistence.*;
@@ -36,5 +37,12 @@ public class Room {
     @NonNull
     private int hasWindow;
 
+//    @Column(name = "guest_id")
+//    @NonNull
+//    private int guest_id;
+
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "guest_id")
+    private Guest guest;
 }
 
