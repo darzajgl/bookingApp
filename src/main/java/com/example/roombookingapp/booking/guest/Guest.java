@@ -2,6 +2,7 @@ package com.example.roombookingapp.booking.guest;
 
 import com.example.roombookingapp.booking.room.Room;
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -29,11 +30,14 @@ public class Guest {
     private int goldMember;
 
     @Column(name = "check_in_date")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate checkInDate;
 
     @Column(name = "check_out_date")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate checkOutDate;
 
     @OneToOne(mappedBy = "guest")
     private Room room;
+
 }

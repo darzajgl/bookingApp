@@ -2,11 +2,12 @@
 <html lang="pl" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:form="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
-    <title>All Employees List</title>
-<!--    <meta http-equiv="X-UA-Compatible" content="IE=edge">-->
-<!--    <meta name="viewport" content="width=device-width, initial-scale=1">-->
-<!--    <link rel="stylesheet" href="../../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}" type="text/css">-->
-<!--    <link rel="stylesheet" href="../../static/css/main.css" th:href="@{/css/main.css}" type="text/css">-->
+    <title>All Guests List</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
 </head>
 <body>
 
@@ -23,6 +24,7 @@
                 <th>Name</th>
                 <th>Capacity</th>
                 <th>HasWindow</th>
+                <th>GuestName</th>
             </tr>
             </thead>
             <tbody>
@@ -31,25 +33,27 @@
                 <td th:text="${roomDto.name}"></td>
                 <td th:text="${roomDto.capacity}"></td>
                 <td th:text="${roomDto.hasWindow}"></td>
+                <td th:text="${roomDto.guest}"></td>
 
-<!--                <td class="action-td">-->
-<!--                    <form method="post" class="padding5px" th:action="#" th:action="@{/delete_emp}">-->
-<!--                        <input type="hidden" th:name="emp_id" th:value="${emp.id}">-->
-<!--                        <input type="submit" class="btn btn-danger"  value="Delete" >-->
-<!--                    </form>-->
-<!--                    <form method="post" class="padding5px" action="#" th:action="@{/edit_emp}">-->
-<!--                        <input type="hidden" th:name="emp_id" th:value="${emp.id}">-->
-<!--                        <input type="submit" class="btn btn-warning"  value="Edit">-->
-<!--                    </form>-->
-<!--                </td>-->
+                <td class="action-td">
+                    <!--                    <form method="post" class="padding5px" th:action="#" th:action="@{/delete_emp}">-->
+                    <!--                        <input type="hidden" th:name="emp_id" th:value="${emp.id}">-->
+                    <!--                        <input type="submit" class="btn btn-danger"  value="Delete" >-->
+                    <!--                    </form>-->
+                    <!--                    <form method="post" class="padding5px" action="#" th:action="@{/edit_emp}">-->
+                    <!--                        <input type="hidden" th:name="emp_id" th:value="${emp.id}">-->
+                    <!--                        <input type="submit" class="btn btn-warning"  value="Edit">-->
+                    <!--                    </form>-->
+                </td>
             </tr>
             </tbody>
         </table>
+        <a href="/" class="btn btn-secondary">Main menu</a>
     </div>
 
-<!--    <form method="post" action="test">-->
-<!--        <input type="submit" class="button" name="test" value="test"/>-->
-<!--    </form>-->
+    <!--    <form method="post" action="test">-->
+    <!--        <input type="submit" class="button" name="test" value="test"/>-->
+    <!--    </form>-->
 </div>
 </body>
 </html>

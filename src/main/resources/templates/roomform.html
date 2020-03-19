@@ -12,16 +12,16 @@
         <h1> Add new Room!!</h1>
     </div>
 
- <form action="#" th:action="@{/add}" th:object="room", method ="post">
-     <br><input type="hidden" th:field="*{id}" placeholder="id"><br>
-     <input type="text" th:field="*{number}" placeholder="number"><br>
-     <input type="text" th:field="*{name}" placeholder="name"><br>
-     <input type="text" th:field="*{capacity}" placeholder="capacity"><br>
-     <input type="text" th:field="*{hasWindow}" placeholder="hasWindow"><br>
+    <form action="#" th:action="@{/add}" th:object="room", method ="post">
+        <br><input type="hidden" th:field="*{id}" placeholder="id"><br>
+        <input type="text" th:field="*{number}" placeholder="number"><br>
+        <input type="text" th:field="*{name}" placeholder="name"><br>
+        <input type="text" th:field="*{capacity}" placeholder="capacity"><br>
+        <input type="text" th:field="*{hasWindow}" placeholder="hasWindow"><br>
 
-     <input type="submit" th:value="Save">
-     <br>
- </form>
+        <input type="submit" th:value="Save">
+        <br>
+    </form>
 
 
 </div>
