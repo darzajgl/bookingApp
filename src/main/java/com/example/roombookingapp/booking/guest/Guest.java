@@ -37,7 +37,19 @@ public class Guest {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate checkOutDate;
 
-    @OneToOne(mappedBy = "guest")
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "room_id", referencedColumnName="id")
     private Room room;
 
+    @Override
+    public String toString() {
+        return "Guest{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", goldMember=" + goldMember +
+                ", checkInDate=" + checkInDate +
+                ", checkOutDate=" + checkOutDate +
+                '}';
+    }
 }

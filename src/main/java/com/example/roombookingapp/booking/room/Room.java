@@ -2,7 +2,9 @@ package com.example.roombookingapp.booking.room;
 
 import com.example.roombookingapp.booking.guest.Guest;
 import lombok.*;
+
 import javax.persistence.*;
+
 
 @Data
 @Table(name = "room")
@@ -35,10 +37,21 @@ public class Room {
     @NonNull
     private int hasWindow;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "guest_id")
+    @OneToOne(mappedBy = "room")
     private Guest guest;
 
     public Room() {
     }
+
+    @Override
+    public String toString() {
+        return "Room{" +
+                "id=" + id +
+                ", number=" + number +
+                ", name='" + name + '\'' +
+                ", capacity=" + capacity +
+                ", hasWindow=" + hasWindow +
+                '}';
+    }
 }
+

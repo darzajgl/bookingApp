@@ -1,5 +1,7 @@
 package com.example.roombookingapp.booking.guest;
 
+import com.example.roombookingapp.booking.room.Room;
+import com.example.roombookingapp.booking.room.RoomDao;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,7 +11,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 //klasa transportowa - transfer danych bez ich modyfikacji
@@ -22,6 +26,10 @@ public class GuestController {
     @Autowired
     private GuestDao guestDao;
 
+    @Autowired
+    private RoomDao roomDao;
+
+    private List<Room> roomList;
     private List<Guest> list = new ArrayList<>();
 
     public GuestController() {
@@ -33,17 +41,29 @@ public class GuestController {
 //    }
 
     @RequestMapping("/")
-    public String indexGet(){return "index";}
+    public String indexGet() {
+        return "index";
+    }
 
     @RequestMapping(value = "/guestform", method = RequestMethod.GET)
     public String showform(Model model) {
+        roomList = roomDao.getRoom();
+        List<Room> freeRooms = new ArrayList<>();
+        for (Room room : roomList) {
+            if ( room.getGuest() == null ){
+                freeRooms.add(room);
+            }
+        }
+
         model.addAttribute("guest", new Guest());
+        model.addAttribute("roomList", freeRooms);
+//        model.addAttribute("roomId", new ArrayList<>());
         return "guestform";
     }
 
     @GetMapping("/getAll")
 //    public List<GuestDto> getAll()
-    public ModelAndView viewguests(Model model){
+    public ModelAndView viewguests(Model model) {
         list = guestDao.getGuests();
 
         return new ModelAndView("viewguest", "list", list);
@@ -72,26 +92,44 @@ public class GuestController {
 //    @PostMapping(value = "/add", produces = "application/json")
 //    @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping("/add")
-    public ModelAndView add(@ModelAttribute(value = "guest") Guest guestDto) {
+    public ModelAndView add(@ModelAttribute(value = "guest") Guest guestDto,//car
+                            @ModelAttribute(value = "roomId") String roomId)//emp
+    {
 //        log.info("attempting do create guest with guestDto:[{}]!", guestDto);
 //        guestApi.add(guestDto);
-
+        int room_id = Integer.parseInt(roomId);
+        List<Room> roomList = roomDao.getRoom();
+        List<Guest> guestList = guestDao.getGuests();
+        int size = guestList.size();
+        Long lastId = guestList.get(size-1).getId();
+        guestDto.setRoom(roomList.get(room_id-201));
         if (guestDto.getId() == null) {
-            guestDto.setId(Long.valueOf(1));
-            try {
-                guestDao.createGuest(guestDto);
-            } catch (NullPointerException e) {
-                e.printStackTrace();
-            }
+            guestDto.setId(lastId + 1);
+            guestDao.createGuest(guestDto);
+            guestDto.setId((long) list.size());
             list.add(guestDto);
         } else {
+            roomList = roomDao.getRoom();
+            int index = Math.toIntExact(guestDto.getId());
+            guestDto.setRoom(roomList.get(index));
             guestDao.updateGuest(guestDto);
-            Long index = guestDto.getId();
-            guestDto.setId(index);
+            list.set((int) (guestDto.getId() - 1), guestDto);
+            updateGuestInList(guestDto);
         }
-
         return new ModelAndView("redirect:/getAll");
     }
+
+
+    private void updateGuestInList(Guest guest) {
+        Guest guestTemp = getGuestById(Math.toIntExact(guest.getId()));
+        guestTemp.setName(guest.getName());
+        guestTemp.setEmail(guest.getEmail());
+        guestTemp.setGoldMember(guest.getGoldMember());
+        guestTemp.setCheckInDate(guest.getCheckInDate());
+        guestTemp.setCheckOutDate(guest.getCheckOutDate());
+
+    }
+
 //
 //    @DeleteMapping("/delete")
 //    @ResponseStatus(HttpStatus.NO_CONTENT)
