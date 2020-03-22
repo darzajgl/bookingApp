@@ -92,8 +92,8 @@ public class GuestController {
 //    @PostMapping(value = "/add", produces = "application/json")
 //    @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping("/add")
-    public ModelAndView add(@ModelAttribute(value = "guest") Guest guestDto,//car
-                            @ModelAttribute(value = "roomId") String roomId)//emp
+    public ModelAndView add(@ModelAttribute(value = "guest") Guest guestDto,
+                            @ModelAttribute(value = "roomId") String roomId)
     {
 //        log.info("attempting do create guest with guestDto:[{}]!", guestDto);
 //        guestApi.add(guestDto);
@@ -138,13 +138,22 @@ public class GuestController {
 //        guestApi.delete(id);
 //    }
 
-    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    @RequestMapping(value = "/delete_guest", method = RequestMethod.POST)
     public ModelAndView delete(@RequestParam(value = "guest_id") String guest_id) {
         Guest guestToDelete = getGuestById(Integer.parseInt(guest_id));
         list.remove(guestToDelete);
         guestDao.delete(guestToDelete);
-        return new ModelAndView("redirect:/getAll");
+        return new ModelAndView("redirect:/viewguest");
     }
+    @RequestMapping(value = "/edit_guest")
+    public ModelAndView edit(@RequestParam(value = "guest_id") String guest_id) {
+        System.out.printf("get guest with id:", guest_id);
+       Guest guest = getGuestById(Integer.parseInt(guest_id));
+
+        return new ModelAndView("guestform", "guest", guest);
+    }
+
+
 
     private Guest getGuestById(@RequestParam int guest_id) {
         return list.stream().filter(f -> f.getId() == guest_id).findFirst().get();

@@ -9,20 +9,21 @@
 <body>
 <hr>
 <div class="container">
-    <h2>Guest Form</h2>
+    <h2>Add new Guest</h2>
     <div class="form-group">
         <form action="#" class="form-group" th:action="@{/add}" th:object="${guest}" method="post">
             <input type="hidden" th:field="*{id}">
-            <input type="text" class="form-control" th:field="*{name}" placeholder="Name"><br>
-            <input type="text" class="form-control" th:field="*{email}" placeholder="email"><br>
-            <input type="text" class="form-control" th:field="*{goldMember}" placeholder="gold member"><br>
-            <input type="text" class="form-control" th:field="*{checkInDate}"
-                   placeholder="check in date yyyy-mm-dd"><br>
-            <input type="text" class="form-control" th:field="*{checkOutDate}"
-                   placeholder="check out date yyyy-mm-dd"><br>
-            <!--            <input type="text" class="form-control" th:field="*{room.number}" placeholder="RoomNumber"><br>-->
 
-            <select class="form-control" name="roomId" required>
+            <label>Name<input type="text" class="form-control" th:field="*{name}" placeholder="Name"></label><br>
+            <label>Email address<input type="text" class="form-control" th:field="*{email}" placeholder="email"></label><br>
+            <label>Gold Member (1-YES, 0-NO)<input type="text" class="form-control" th:field="*{goldMember}" placeholder="gold member"></label><br>
+            <label>Check in date<input type="date" class="form-control" th:field="*{checkInDate}"
+                   placeholder="yyyy-mm-dd"></label><br>
+            <label>Check out date<input type="date" class="form-control" th:field="*{checkOutDate}"
+                                        placeholder="check out date yyyy-mm-dd"></label><br>
+<!--                        <input type="text" class="form-control" th:field="*{room.number}" placeholder="RoomNumber"><br>-->
+
+            <select class="form-control" name="roomId">
                 <option value="default">Select room</option>
                 <option th:each="guest : ${roomList}"
                         th:value="${guest.id}"

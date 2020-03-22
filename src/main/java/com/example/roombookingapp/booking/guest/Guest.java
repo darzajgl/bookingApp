@@ -37,7 +37,7 @@ public class Guest {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate checkOutDate;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "room_id", referencedColumnName="id")
     private Room room;
 

@@ -9,3 +9,22 @@
 .padding10px{
     padding: 10px;
 }
+
+.body {background-color: lemonchiffon;}
+
+.container {align-content: center}
+.container {text-align: center}
+.center-block {
+    margin: auto;
+    display: block;
+}
+{
+    display:table-cell; //display like a <td> to make the vertical-align work
+text-align:center; //centre the input horizontally
+vertical-align:middle; //centre the input vertically
+
+
+width:200px; //widen the div for demo purposes
+height:200px; //make the div taller for demo purposes
+background:green; //change the background of the div for demo purposes
+}

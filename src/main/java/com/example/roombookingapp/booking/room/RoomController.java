@@ -70,11 +70,11 @@ public class RoomController {
 //    @RequestMapping(value = "/add", produces = "application/json")
 //    @ResponseStatus(HttpStatus.CREATED)
 //    public ModelAndView add(@ModelAttribute(value = "room") Room roomDto) {
-//        log.info("attempting do create room [{}]!", roomDto);
-//        roomApi.add(roomDto);
+////        log.info("attempting do create room [{}]!", roomDto);
+//        room.add(roomDto);
 //        return new ModelAndView("redirect:/room/getAll");
 //    }
-//
+
 //    @DeleteMapping("/delete")
 //    @ResponseStatus(HttpStatus.NO_CONTENT)
 //    public void delete(Long id) {

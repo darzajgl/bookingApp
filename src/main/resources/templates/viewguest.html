@@ -6,25 +6,9 @@
     <title>All Guests List</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-
-    <style>
-        .action-td{
-            display: inline-flex;
-        }
-
-        .padding5px{
-            padding: 5px;
-        }
-
-        .padding10px{
-            padding: 10px;
-        }
-
-        body {background-color: lemonchiffon;}
-
-    </style>
 </head>
 <body>
 
@@ -39,9 +23,10 @@
             <tr>
                 <th>Name</th>
                 <th>Email</th>
-                <th>GoldMember</th>
-                <th>CheckInDate</th>
-                <th>CheckOutDate</th>
+                <th>Gold Member</th>
+                <th>Check In Date</th>
+                <th>Check Out Date</th>
+                <th>Room</th>
                 <th>Action</th>
             </tr>
             </thead>
@@ -53,20 +38,23 @@
                 <td th:text="${guest.checkInDate}"></td>
                 <td th:text="${guest.checkOutDate}"></td>
                 <td th:text="${guest.room.number}"></td>
+
                 <td class="action-td">
-                    <!--                    <form method="post" class="padding5px" th:action="#" th:action="@{/delete}">-->
-                    <!--                        <input type="hidden" th:name="guest_id" th:value="${guest.id}">-->
-                    <!--                        <input type="submit" class="btn btn-warning" value="Delete">-->
-                    <!--                    </form>-->
-                    <!--                    <form method="post" class="padding5px" action="#" th:action="@{/edithero}">-->
-                    <!--                        <input type="hidden" th:name="guest_id" th:value="${guest.id}">-->
-                    <!--                        <input type="submit" class="btn btn-success" value="Edit">-->
-                    <!--                    </form>-->
+<!--                    <form method="post" class="padding5px" th:action="#" th:action="@{/delete_guest}">-->
+<!--                        <input type="hidden" th:name="guest_id" th:value="${guest.id}">-->
+<!--                        <input type="submit" class="btn btn-warning" value="Delete">-->
+<!--                    </form>-->
+                    <form method="post" class="padding5px" action="#" th:action="@{/edit_guest}">
+                        <input type="hidden" th:name="guest_id" th:value="${guest.id}">
+                        <input type="submit" class="btn btn-success" value="Edit">
+                    </form>
                 </td>
             </tr>
             </tbody>
         </table>
         <a href="/" class="btn btn-secondary">Main menu</a>
+        <a href="/guestform" class="btn btn-primary">Add new guest</a>
+
 
     </div>
 
