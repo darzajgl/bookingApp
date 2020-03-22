@@ -26,7 +26,6 @@ public class RoomDto {
     @NotNull
     private int hasWindow;
 
-
     static RoomDto from(Room room) {
         return RoomDto.builder()
                 .number(room.getNumber())

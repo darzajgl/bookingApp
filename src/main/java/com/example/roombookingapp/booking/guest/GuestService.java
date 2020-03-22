@@ -36,8 +36,6 @@ public class GuestService implements GuestApi {
 //        }
 //    }
 
-
-
     @Override
     public List<Guest> getAll() {
         log.info("attempting do get all guests");
@@ -75,6 +73,5 @@ public class GuestService implements GuestApi {
         log.info("attempting do delete guest with id:[{}]", id);
         Guest guestToDelete = this.get(id);
         guestRepository.delete(guestToDelete);
-
     }
 }

@@ -13,7 +13,6 @@ public class GuestDao {
         @Autowired
         public GuestRepository repository;
 
-
         public void createGuest(Guest guest) {
                 repository.save(guest);
         }
@@ -41,7 +40,6 @@ public class GuestDao {
 //            e.printStackTrace();
 //        }
 //}
-
 
 }
 

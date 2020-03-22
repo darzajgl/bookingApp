@@ -50,7 +50,7 @@ public class GuestController {
         roomList = roomDao.getRoom();
         List<Room> freeRooms = new ArrayList<>();
         for (Room room : roomList) {
-            if ( room.getGuest() == null ){
+            if (room.getGuest() == null) {
                 freeRooms.add(room);
             }
         }
@@ -93,16 +93,15 @@ public class GuestController {
 //    @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping("/add")
     public ModelAndView add(@ModelAttribute(value = "guest") Guest guestDto,
-                            @ModelAttribute(value = "roomId") String roomId)
-    {
+                            @ModelAttribute(value = "roomId") String roomId) {
 //        log.info("attempting do create guest with guestDto:[{}]!", guestDto);
 //        guestApi.add(guestDto);
         int room_id = Integer.parseInt(roomId);
         List<Room> roomList = roomDao.getRoom();
         List<Guest> guestList = guestDao.getGuests();
         int size = guestList.size();
-        Long lastId = guestList.get(size-1).getId();
-        guestDto.setRoom(roomList.get(room_id-201));
+        Long lastId = guestList.get(size - 1).getId();
+        guestDto.setRoom(roomList.get(room_id - 201));
         if (guestDto.getId() == null) {
             guestDto.setId(lastId + 1);
             guestDao.createGuest(guestDto);
@@ -119,7 +118,6 @@ public class GuestController {
         return new ModelAndView("redirect:/getAll");
     }
 
-
     private void updateGuestInList(Guest guest) {
         Guest guestTemp = getGuestById(Math.toIntExact(guest.getId()));
         guestTemp.setName(guest.getName());
@@ -127,9 +125,7 @@ public class GuestController {
         guestTemp.setGoldMember(guest.getGoldMember());
         guestTemp.setCheckInDate(guest.getCheckInDate());
         guestTemp.setCheckOutDate(guest.getCheckOutDate());
-
     }
-
 //
 //    @DeleteMapping("/delete")
 //    @ResponseStatus(HttpStatus.NO_CONTENT)
@@ -145,15 +141,14 @@ public class GuestController {
         guestDao.delete(guestToDelete);
         return new ModelAndView("redirect:/viewguest");
     }
+
     @RequestMapping(value = "/edit_guest")
     public ModelAndView edit(@RequestParam(value = "guest_id") String guest_id) {
         System.out.printf("get guest with id:", guest_id);
-       Guest guest = getGuestById(Integer.parseInt(guest_id));
+        Guest guest = getGuestById(Integer.parseInt(guest_id));
 
         return new ModelAndView("guestform", "guest", guest);
     }
-
-
 
     private Guest getGuestById(@RequestParam int guest_id) {
         return list.stream().filter(f -> f.getId() == guest_id).findFirst().get();
