@@ -1,4 +1,4 @@
-Indywidualny projekt w ramach kursu programowania Java, oparty o wzorzec MVC.
-Aplikacja służy do zarządzania gośćmi hotelowymi. Za jej pomocą można edytować, dodawać nowych gości oraz przypisywać do nich pokoje.
-Wśród jej funkcji znajduje się również pokazanie list gości oraz pokoi. Wszystkie dane zapisywane są w zdalnej bazie danych. 
-Zastosowane technologie: Java 8, SQL (PSQL), HTML, CSS, Maven, Spring Boot, Hibernate, JPA, Thymeleaf.
+An individual project as part of a Java programming course, based on the MVC pattern.
+The application is used to manage reservations of hotel guests. With its help, you can edit, add new guests and assign rooms to them.
+Among its functions is also showing lists of guests and rooms. All data is stored in a remote database.
+Technologies used: Java 8, SQL (PSQL), HTML, CSS, Maven, Spring Boot, Hibernate, JPA, Thymeleaf.
